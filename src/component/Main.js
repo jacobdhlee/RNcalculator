@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end'
   },
   countText: {
-    fontSize: 80,
+    fontSize: 60,
     fontWeight: '600',
   }
 });
