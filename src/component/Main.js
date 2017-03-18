@@ -5,19 +5,27 @@ import {
   StyleSheet,
   Dimensions,
 } from 'react-native';
-
+import { connect } from 'react-redux';
 const { width, height } = Dimensions.get('window');
 
 import Keyboard from './KeyBoard';
 import RoundButton from './RoundButton';
 import Tipbar from './Tipbar'
 
+@connect((store) => {
+  const { calculate } = store
+  return {
+    display: calculate.display,
+  }
+})
+
 class Main extends Component {
   render() {
+    const { display } = this.props
     return (
       <View style={styles.container}>
         <View style={styles.countStyle}>
-          <Text style={styles.countText}>0</Text>
+          <Text style={styles.countText}>{display}</Text>
         </View>
         <Tipbar />
         <Keyboard />

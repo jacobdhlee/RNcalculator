@@ -1,6 +1,6 @@
 import {
   AppRegistry,
 } from 'react-native';
-import Main from './src/component/Main';
+import App from './src/App';
 
-AppRegistry.registerComponent('calculator', () => Main);
+AppRegistry.registerComponent('calculator', () => App);

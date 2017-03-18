@@ -1,0 +1,1 @@
+export const DIGITAL_TYPED = 'digital_typed';
