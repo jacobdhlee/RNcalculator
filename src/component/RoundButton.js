@@ -2,6 +2,7 @@ import React from 'react';
 import {
   View,
   TouchableOpacity,
+  TouchableHighlight,
   Text,
   StyleSheet,
   Dimensions,

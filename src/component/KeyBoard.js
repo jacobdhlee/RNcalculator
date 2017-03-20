@@ -28,6 +28,16 @@ class KeyBoard extends Component {
     this.digitalReset = this.digitalReset.bind(this);
     this.operator = this.operator.bind(this);
     this.excuted = this.excuted.bind(this);
+    this.colorPicker = this.colorPicker.bind(this)
+  }
+
+  colorPicker() {
+    const color_one = Math.floor(Math.random() * 250 )
+    const color_two = Math.floor(Math.random() * 250 )
+    const color_three = Math.floor(Math.random() * 250 )
+    const a =  `rgba(${color_one},${color_two},${color_three}, 0.5)`
+    console.log('a is ', a)
+    return a
   }
 
   digital(text) {
@@ -50,9 +60,9 @@ class KeyBoard extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.row}>
-          <Button text={"AC"} onPress={this.digitalReset}/>
-          <Button text={"+/-"} onPress={() => this.digital('-')}/>
-          <Button text={"%"} onPress={() => this.digital('%')}/>
+          <Button text={"AC"} underlayColor={this.colorPicker()} onPress={this.digitalReset}/>
+          <Button text={"+/-"} underlayColor={this.colorPicker()} onPress={() => this.digital('-')}/>
+          <Button text={"%"} underlayColor={this.colorPicker()} onPress={() => this.digital('%')}/>
           <RoundButton 
             text={"/"} 
             backgroundColor={"#ffe135"} 
@@ -60,9 +70,9 @@ class KeyBoard extends Component {
         </View>
 
         <View style={styles.row}>
-          <Button text={"7"} onPress={() => this.digital('7')}/>
-          <Button text={"8"} onPress={() => this.digital('8')}/>
-          <Button text={"9"} onPress={() => this.digital('9')}/>
+          <Button text={"7"} underlayColor={this.colorPicker()} onPress={() => this.digital('7')}/>
+          <Button text={"8"} underlayColor={this.colorPicker()} onPress={() => this.digital('8')}/>
+          <Button text={"9"} underlayColor={this.colorPicker()} onPress={() => this.digital('9')}/>
           <RoundButton 
             text={"X"} 
             backgroundColor={"#ccaaff"} 
@@ -70,9 +80,9 @@ class KeyBoard extends Component {
         </View>
 
         <View style={styles.row}>
-          <Button text={"4"} onPress={() => this.digital('4')}/>
-          <Button text={"5"} onPress={() => this.digital('5')}/>
-          <Button text={"6"} onPress={() => this.digital('6')}/>
+          <Button text={"4"} underlayColor={this.colorPicker()} onPress={() => this.digital('4')}/>
+          <Button text={"5"} underlayColor={this.colorPicker()} onPress={() => this.digital('5')}/>
+          <Button text={"6"} underlayColor={this.colorPicker()} onPress={() => this.digital('6')}/>
           <RoundButton 
             text={"-"} 
             backgroundColor={"#ffaaff"} 
@@ -80,9 +90,9 @@ class KeyBoard extends Component {
         </View>
 
         <View style={styles.row}>
-          <Button text={"1"} underlayColor={'red'} onPress={() => this.digital('1')}/>
-          <Button text={"2"} onPress={() => this.digital('2')}/>
-          <Button text={"3"} onPress={() => this.digital('3')}/>
+          <Button text={"1"} underlayColor={this.colorPicker()} onPress={() => this.digital('1')}/>
+          <Button text={"2"} underlayColor={this.colorPicker()} onPress={() => this.digital('2')}/>
+          <Button text={"3"} underlayColor={this.colorPicker()} onPress={() => this.digital('3')}/>
           <RoundButton 
             text={"+"} 
             backgroundColor={"#3eb489"} 
@@ -90,9 +100,9 @@ class KeyBoard extends Component {
         </View>
 
         <View style={styles.row}>
-          <Button text={"0"} onPress={() => this.digital('0')}/>
-          <Button text={"00"} onPress={() => this.digital('00')}/>
-          <Button text={"."} onPress={() => this.digital('.')}/>
+          <Button text={"0"} underlayColor={this.colorPicker()} onPress={() => this.digital('0')}/>
+          <Button text={"00"} underlayColor={this.colorPicker()} onPress={() => this.digital('00')}/>
+          <Button text={"."} underlayColor={this.colorPicker()} onPress={() => this.digital('.')}/>
           <RoundButton 
             text={"="} 
             backgroundColor={"#89cff0"} 
