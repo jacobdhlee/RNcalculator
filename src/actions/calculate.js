@@ -1,7 +1,9 @@
 import { 
   DIGITAL_TYPED,
   DIGITAL_RESET,
-  OPERATOR_TYPED
+  OPERATOR_TYPED,
+  EXCUTED_CALCULATE,
+  TIP_CALCULATE,
 } from './types';  
 
 export const digitalEnter = (text) => {
@@ -21,6 +23,19 @@ export const digitalReset = () => {
 export const operatorEnter = (text) => {
   return {
     type: OPERATOR_TYPED,
+    payload: text
+  }
+}
+
+export const excutedEnter = () => {
+  return {
+    type: EXCUTED_CALCULATE,
+  }
+}
+
+export const tipEnter = (text) => {
+  return {
+    type: TIP_CALCULATE,
     payload: text
   }
 }

@@ -6,7 +6,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 
-import { digitalEnter, digitalReset, operatorEnter } from '../actions'
+import { digitalEnter, digitalReset, operatorEnter, excutedEnter } from '../actions'
 import Button from './Button';
 import RoundButton from './RoundButton';
 
@@ -27,6 +27,7 @@ class KeyBoard extends Component {
     this.digital = this.digital.bind(this);
     this.digitalReset = this.digitalReset.bind(this);
     this.operator = this.operator.bind(this);
+    this.excuted = this.excuted.bind(this);
   }
 
   digital(text) {
@@ -39,6 +40,10 @@ class KeyBoard extends Component {
 
   operator(ops) {
     this.props.dispatch(operatorEnter(ops))
+  }
+
+  excuted() {
+    this.props.dispatch(excutedEnter())
   }
 
   render() {
@@ -91,7 +96,7 @@ class KeyBoard extends Component {
           <RoundButton 
             text={"="} 
             backgroundColor={"#89cff0"} 
-            />
+            onPress={this.excuted}/>
         </View>
 
       </View>

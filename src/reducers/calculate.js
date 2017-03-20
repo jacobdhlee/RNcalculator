@@ -2,6 +2,8 @@ import {
   DIGITAL_TYPED,
   DIGITAL_RESET,
   OPERATOR_TYPED,
+  EXCUTED_CALCULATE,
+  TIP_CALCULATE,
 } from '../actions/types';
 
 const inital_state = {
@@ -61,26 +63,36 @@ export default ( state = inital_state, action ) => {
 
     case OPERATOR_TYPED:
       if(state.previousValue.length > 0) {
-        if( ((state.operatorValue[0] === '+' || state.operatorValue[0] === '-') && (action.payload === '+' || action.payload === '-'))  || ((state.operatorValue[0] === '*' || state.operatorValue[0] === '/') && (action.payload === '*' || action.payload === '/')) ) {
+        // if( ((state.operatorValue[0] === '+' || state.operatorValue[0] === '-') && (action.payload === '+' || action.payload === '-'))  || ((state.operatorValue[0] === '*' || state.operatorValue[0] === '/') && (action.payload === '*' || action.payload === '/')) ) {
           const value = calculateValue(state.operatorValue[0], state.previousValue[0], state.display)
           return {...state, display: String(value), operation: true, operatorValue: [ action.payload ], previousValue: [ value ]}
-        }
+        // }
         
-        if( ((state.operatorValue[0] === '+' || state.operatorValue[0] === '-') && (action.payload === '*' || action.payload === '/')) || ((state.operatorValue[0] === '*' || state.operatorValue[0] === '/') && (action.payload === '+' || action.payload === '-')) ) {
-          const valueStored = state.display;
-          const operationStored = state.operatorValue[0]
-          if(state.nextValue) {
-            const values = calculateValue(state.operatorValue[0], state.nextValue, state.display)
-            const finalValue = calculateValue(state.nextOperator, state.previousValue[0], values)
-            return {...state, operation: true, previousValue: [ finalValue ], display: finalValue ,nextValue: '', nextOperator: '', operatorValue: [ action.payload ]}
-          }
-          // const value = calculateValue(state.operatorValue[0], state.previousValue[0], state.display)
-          return {...state, operation: true, operatorValue: [ action.payload ], nextValue: valueStored, nextOperator: operationStored}
-        }
+        // if( ((state.operatorValue[0] === '+' || state.operatorValue[0] === '-') && (action.payload === '*' || action.payload === '/')) || ((state.operatorValue[0] === '*' || state.operatorValue[0] === '/') && (action.payload === '+' || action.payload === '-')) ) {
+        //   const valueStored = state.display;
+        //   const operationStored = state.operatorValue[0]
+        //   if(state.nextValue) {
+        //     const values = calculateValue(state.operatorValue[0], state.nextValue, state.display)
+        //     const finalValue = calculateValue(state.nextOperator, state.previousValue[0], values)
+        //     return {...state, operation: true, previousValue: [ finalValue ], display: finalValue ,nextValue: '', nextOperator: '', operatorValue: [ action.payload ]}
+        //   }
+        //   return {...state, operation: true, operatorValue: [ action.payload ], nextValue: valueStored, nextOperator: operationStored}
+        // }
       }
       const previousValue = [ ...state.previousValue, parseFloat(state.display) ]
       const operatorValue = [ ...state.operatorValue, action.payload ]
-      return { ...state, operation: true, previousValue, operatorValue} 
+      return { ...state, operation: true, previousValue, operatorValue}
+
+    case EXCUTED_CALCULATE:
+      if(!state.previousValue[0]) {
+        return {...state}
+      }
+      const value = calculateValue(state.operatorValue[0], state.previousValue[0], state.display)
+      return {...inital_state, display: String(value)}
+    
+    case TIP_CALCULATE:
+      const tipValue = calculateValue('*', state.display, action.payload)
+      return {...inital_state, display: String(tipValue)}
 
     default: 
       return inital_state
