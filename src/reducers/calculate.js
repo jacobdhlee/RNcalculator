@@ -16,10 +16,10 @@ const inital_state = {
 };
 
 const operatorCal = {
-  '+': (prev, next) => prev + next,
-  '-': (prev, next) => prev - next,
-  '*': (prev, next) => prev * next,
-  '/': (prev, next) => prev / next,
+  '+': (prev, next) => (prev + next) % 1 !==0 ? (prev + next).toFixed(2) : (prev + next) ,
+  '-': (prev, next) => (prev - next) % 1 !==0 ? (prev - next).toFixed(2) : (prev - next),
+  '*': (prev, next) => (prev * next) % 1 !==0 ? (prev * next).toFixed(2) : (prev * next),
+  '/': (prev, next) => (prev / next) % 1 !==0 ? (prev / next).toFixed(2) : (prev / next),
 }
 
 const calculateValue = (operator, prev, next) => {
