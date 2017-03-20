@@ -42,7 +42,6 @@ class KeyBoard extends Component {
   }
 
   render() {
-    console.log('digitalEnter ? ', this.props)
     return (
       <View style={styles.container}>
         <View style={styles.row}>

@@ -10,6 +10,7 @@ const inital_state = {
   operatorValue: [],
   previousValue: [],
   nextValue: '',
+  nextOperator: '',
 };
 
 const operatorCal = {
@@ -66,14 +67,16 @@ export default ( state = inital_state, action ) => {
         }
         
         if( ((state.operatorValue[0] === '+' || state.operatorValue[0] === '-') && (action.payload === '*' || action.payload === '/')) || ((state.operatorValue[0] === '*' || state.operatorValue[0] === '/') && (action.payload === '+' || action.payload === '-')) ) {
-          const value = calculateValue(state.operatorValue[0], state.previousValue[0], state.display)
-          return {...state, display: String(value), operation: true, operatorValue: [ action.payload ], previousValue: [ value ]}
+          const valueStored = state.display;
+          const operationStored = state.operatorValue[0]
+          if(state.nextValue) {
+            const values = calculateValue(state.operatorValue[0], state.nextValue, state.display)
+            const finalValue = calculateValue(state.nextOperator, state.previousValue[0], values)
+            return {...state, operation: true, previousValue: [ finalValue ], display: finalValue ,nextValue: '', nextOperator: '', operatorValue: [ action.payload ]}
+          }
+          // const value = calculateValue(state.operatorValue[0], state.previousValue[0], state.display)
+          return {...state, operation: true, operatorValue: [ action.payload ], nextValue: valueStored, nextOperator: operationStored}
         }
-        // if( (state.operatorValue[0] === '*' || state.operatorValue[0] === '/') && (action.payload === '+' || action.payload === '-')) {
-        //   const value = calculateValue(state.operatorValue[0], state.previousValue[0], state.display)
-        //   return {...state, display: String(value), operation: true, operatorValue: [ action.payload ], previousValue: [ value ]}
-        // }
-
       }
       const previousValue = [ ...state.previousValue, parseFloat(state.display) ]
       const operatorValue = [ ...state.operatorValue, action.payload ]
