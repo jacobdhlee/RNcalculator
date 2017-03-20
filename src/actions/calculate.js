@@ -1,6 +1,7 @@
 import { 
   DIGITAL_TYPED,
-  DIGITAL_RESET
+  DIGITAL_RESET,
+  OPERATOR_TYPED
 } from './types';  
 
 export const digitalEnter = (text) => {
@@ -14,5 +15,12 @@ export const digitalReset = () => {
   return {
     type: DIGITAL_RESET,
     payload: '0'
+  }
+}
+
+export const operatorEnter = (text) => {
+  return {
+    type: OPERATOR_TYPED,
+    payload: text
   }
 }
