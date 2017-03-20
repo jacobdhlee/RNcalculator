@@ -80,7 +80,7 @@ class KeyBoard extends Component {
         </View>
 
         <View style={styles.row}>
-          <Button text={"1"} onPress={() => this.digital('1')}/>
+          <Button text={"1"} underlayColor={'red'} onPress={() => this.digital('1')}/>
           <Button text={"2"} onPress={() => this.digital('2')}/>
           <Button text={"3"} onPress={() => this.digital('3')}/>
           <RoundButton 

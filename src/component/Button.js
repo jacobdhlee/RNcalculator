@@ -10,13 +10,13 @@ import {
 
 const { width } = Dimensions.get('window');
 
-const Button = ({text, onPress}) => {
+const Button = ({text, onPress, underlayColor}) => {
   return (
-    <TouchableOpacity  onPress={onPress}>
+    <TouchableHighlight  underlayColor={underlayColor} onPress={onPress}>
       <View style={styles.container}>
         <Text style={styles.buttonText}>{text}</Text>
       </View>
-    </TouchableOpacity>
+    </TouchableHighlight>
   )
 }
 
