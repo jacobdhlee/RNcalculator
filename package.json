@@ -7,11 +7,13 @@
     "test": "jest"
   },
   "dependencies": {
-    "react": "15.4.2",
-    "react-native": "0.42.0",
+    "react": "~15.4.2",
+    "react-native": "github:exponent/react-native#sdk-15.0.0",
     "react-redux": "^5.0.3",
     "redux": "^3.6.0",
-    "redux-logger": "^2.8.2"
+    "redux-logger": "^2.8.2",
+    "@expo/vector-icons": "~4.0.0",
+    "expo": "~15.0.0"
   },
   "devDependencies": {
     "babel-eslint": "^7.1.1",
@@ -28,5 +30,6 @@
   },
   "jest": {
     "preset": "react-native"
-  }
+  },
+  "main": ""
 }
